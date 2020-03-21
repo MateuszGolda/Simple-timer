@@ -8,8 +8,9 @@ def main():
     custom_time = set_custom_time()
     study_durat = custom_time[0] if custom_time else 52
     break_durat = custom_time[1] if custom_time else 17
+    isRunning = True
     studying = True
-    while True:
+    while isRunning:
         alarm_time = get_alarm_date(studying, study_durat, break_durat)
         sleep_until_time_for_alarm(alarm_time, studying)
         studying = not studying
