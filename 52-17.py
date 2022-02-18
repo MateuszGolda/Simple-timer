@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 from time import sleep
 from sys import argv
 from subprocess import call
+import pyttsx3
+import os
 
 
 def main():
@@ -54,7 +56,12 @@ def sleep_until_time_for_alarm(alarm_date, studying):
 def turn_alarm_on(message):
     """Get speech output from entered message.
     """
-    call(["spd-say", message])
+    if os.name == 'nt':
+        engine = pyttsx3.init()
+        engine.say(message)
+        engine.runAndWait()
+    else:
+        call(["spd-say", message])
 
 
 if __name__ == "__main__":
